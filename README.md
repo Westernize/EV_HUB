@@ -2,7 +2,7 @@
 *CUTE & SIMPLE EV Charging Reservation Platform*
 
 <p align="center">
-  <img src="./logo.png" width="200" alt="EV HUB Logo"/>
+  <img src="docs/logo.png" width="200" alt="EV HUB Logo"/>
 </p>
 
 전기차 사용자는 빠르게 증가하고 있지만 대부분의 충전소는 **선착순**으로 운영되고 있습니다.  
@@ -59,7 +59,7 @@
 ## 🧩 ERD 요약
 
 <p align="center">
-  <img src="./ERD.png" width="600" alt="ERD Diagram"/>
+  <img src="docs/ERD.png" width="600" alt="ERD Diagram"/>
 </p>
 
 - User 중심 구조  
