@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Electronic Car Charging Map Application'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    // ✅ Gradle이 라이브러리를 다운로드할 저장소
+    mavenCentral()
+}
+
+dependencies {
+    // ✅ 웹 & 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // ✅ JPA + MySQL (데이터베이스)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+    // ✅ JSON 파서
+    implementation 'org.json:json:20231013'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // ✅ Lombok (자동 Getter/Setter/생성자)
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // ✅ 테스트용 Lombok 설정 (선택)
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // ✅ 개발 편의 도구 & 테스트
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << "-Xlint:none"
+}
+
+// ✅ 콘솔 출력 한글 깨짐 방지
+bootRun {
+    systemProperty "file.encoding", "UTF-8"
+    jvmArgs = ['-Dfile.encoding=UTF-8']
+}

@@ -1,0 +1,309 @@
+/* 🧭 지도 */
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border-left: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1;
+    pointer-events: auto;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#map.loaded {
+    opacity: 1;
+}
+
+/* 지도 내부 모든 요소가 클릭 가능하도록 */
+#map > * {
+    pointer-events: auto;
+}
+
+/* 지도 위쪽 검색 및 필터 영역 */
+#map-top-controls {
+    position: absolute;
+    left: 500px; /* 사이드바 열려있을 때 */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none; /* 지도 클릭을 막지 않도록 */
+    transition: left 0.3s ease;
+}
+
+/* 사이드바 닫혀있을 때 */
+#sidebar.collapsed ~ #map #map-top-controls {
+    left: 60px;
+}
+
+#map-top-controls > * {
+    pointer-events: auto; /* 컨트롤 요소는 클릭 가능 */
+}
+
+#map-top-controls > div {
+    position: relative;
+    display: inline-block;
+}
+
+#map-top-controls #searchBox {
+    flex: 0 0 auto;
+    width: 300px;
+    min-width: 200px;
+    padding: 12px 16px;
+    padding-right: 40px;
+    border: 2px solid #2C3E50;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+    transition: all 0.2s ease;
+}
+
+#map-top-controls #searchBox::placeholder {
+    color: #999;
+}
+
+#map-top-controls #searchBox:focus {
+    outline: none;
+    border-color: #34495E;
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(52, 73, 94, 0.25);
+}
+
+#map-top-controls > div > span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 16px;
+    z-index: 1;
+}
+
+#map-top-controls #map-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    flex: 0 0 auto;
+}
+
+#map-top-controls .filter-chip {
+    padding: 8px 16px;
+    border: 2px solid #2C3E50;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #ffffff;
+    color: #2C3E50;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.15);
+}
+
+#map-top-controls .filter-chip:hover {
+    background: #ffffff;
+    border-color: #34495E;
+    color: #2C3E50;
+    box-shadow: 0 2px 8px rgba(52, 73, 94, 0.2);
+}
+
+#map-top-controls .filter-chip:active {
+    background: #ffffff;
+    color: #2C3E50;
+}
+
+#map-top-controls .filter-chip.active {
+    background: #2C3E50;
+    color: #ffffff;
+    border-color: #2C3E50;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
+}
+
+/* 반응형 - 작은 화면에서 지도 위쪽 컨트롤 조정 */
+@media (max-width: 768px) {
+    #map-top-controls {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    #map-top-controls #searchBox {
+        width: 100%;
+        min-width: 0;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    #map-top-controls #map-filters {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #map-top-controls .filter-chip {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ⚡ 충전소 리스트 */
+.station {
+    border: none;
+    border-radius: 16px;
+    padding: 10px 14px;
+    margin-top:15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    max-width: 320px;
+    background: linear-gradient(
+        135deg,
+        rgba(6, 26, 52, 0.92) 0%,
+        rgba(10, 40, 80, 0.88) 100%
+    );
+    backdrop-filter: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+}
+
+.station.selected {
+    transform: scale(1.02);
+}
+
+.station.selected::after {
+    background: transparent;
+}
+
+.station:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(6, 26, 52, 0.92),
+        rgba(10, 40, 80, 0.88)
+    ) !important;
+}
+
+
+.station:hover::after {
+    background: none;
+    border: 2px solid #00C2A8;
+    box-shadow:
+        0 0 10px rgba(0, 194, 168, 0.35),
+        0 0 20px rgba(0, 194, 168, 0.2);
+}
+
+
+
+.station::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 16px;
+
+    /* 배경 제거 */
+    background: none;
+
+   /* 테두리만 강조 */
+   border: 2px solid #0077CC; /* ★ 추천 */
+
+    z-index: 1;
+    pointer-events: none;
+    box-shadow:
+        0 0 10px rgba(0, 168, 255, 0.4),
+        0 0 20px rgba(24, 208, 255, 0.25);
+}
+
+
+.station::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/img/sidebar.png');
+    background-size: auto 80%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    filter: none;
+    opacity: 0.05;
+    z-index: -1;
+    border-radius: 16px;
+}
+
+
+.station strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+
+.station > div:first-of-type {
+    font-size: 13px;
+    color: #CFEAFF;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.station > div:nth-of-type(2) {
+    margin-bottom: 10px;
+}
+
+.station > div:last-of-type {
+    font-size: 12px;
+    color: #CFEAFF;
+    margin-top: 10px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.status.green { color: #4ade80; }
+.status.red { color: #f87171; }
+.status.orange { color: #fb923c; }
+
+/* ✅ 클러스터 스타일 */
+.cluster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+}
+
+/* 클러스터 이미지가 제대로 표시되도록 */
+.cluster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Kakao Map 클러스터 아이콘 스타일 */
+div[class*="cluster"],
+div[class*="Cluster"],
+div[class*="marker-cluster"],
+div[class*="MarkerCluster"] {
+    cursor: pointer !important;
+}
+

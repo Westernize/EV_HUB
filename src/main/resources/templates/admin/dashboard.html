@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 | EV HUB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/admin.css}" href="/css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- 사이드바 -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img th:src="@{/img/logo.png}" src="/img/logo.png" alt="EV HUB" class="sidebar-logo" onerror="this.style.display='none'">
+                <h2>관리자 모드</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="#users" class="nav-item" data-section="users">
+                    <span class="nav-icon">👥</span>
+                    <span>회원 관리</span>
+                </a>
+                <a href="#reservations" class="nav-item" data-section="reservations">
+                    <span class="nav-icon">📅</span>
+                    <span>예약 내역</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">로그아웃</button>
+            </div>
+        </aside>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="page-title">대시보드</h1>
+                <div class="header-actions">
+                    <span class="admin-name" id="admin-name">관리자</span>
+                </div>
+            </header>
+
+            <!-- 대시보드 섹션 -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">👥</div>
+                        <div class="stat-content">
+                            <h3>전체 회원</h3>
+                            <p class="stat-number" id="total-users">-</p>
+                            <span class="stat-label">명</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">👤</div>
+                        <div class="stat-content">
+                            <h3>일반 회원</h3>
+                            <p class="stat-number" id="regular-users">-</p>
+                            <span class="stat-label">명</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📅</div>
+                        <div class="stat-content">
+                            <h3>전체 예약</h3>
+                            <p class="stat-number" id="total-reservations">-</p>
+                            <span class="stat-label">건</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">✅</div>
+                        <div class="stat-content">
+                            <h3>결제 완료</h3>
+                            <p class="stat-number" id="paid-reservations">-</p>
+                            <span class="stat-label">건</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 회원 관리 섹션 -->
+            <section id="users-section" class="content-section">
+                <div class="section-header">
+                    <h2>회원 목록</h2>
+                    <div class="search-box">
+                        <input type="text" id="user-search" placeholder="아이디, 닉네임으로 검색...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>아이디</th>
+                                <th>닉네임</th>
+                                <th>역할</th>
+                                <th>가입일</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <tr>
+                                <td colspan="6" class="loading-row">로딩 중...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 예약 내역 섹션 -->
+            <section id="reservations-section" class="content-section">
+                <div class="section-header">
+                    <h2>예약 내역</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>예약 ID</th>
+                                <th>회원</th>
+                                <th>충전소</th>
+                                <th>예약일</th>
+                                <th>예약시간</th>
+                                <th>결제금액</th>
+                                <th>결제상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservations-table-body">
+                            <tr>
+                                <td colspan="7" class="loading-row">로딩 중...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 회원 수정 모달 -->
+    <div id="edit-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>회원 정보 수정</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-id">
+                    <div class="form-group">
+                        <label>아이디</label>
+                        <input type="text" id="edit-username" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>닉네임</label>
+                        <input type="text" id="edit-nickname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>비밀번호 (변경 시에만 입력)</label>
+                        <input type="password" id="edit-password" placeholder="변경하지 않으려면 비워두세요">
+                    </div>
+                    <div class="form-group">
+                        <label>역할</label>
+                        <select id="edit-role" required>
+                            <option value="USER">일반 회원</option>
+                            <option value="ADMIN">관리자</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeEditModal()">취소</button>
+                        <button type="submit" class="btn-primary">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/admin.js}" src="/js/admin.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 | EV HUB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #002c5f 0%, #004a8f 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .register-container {
+            width: 100%;
+            max-width: 480px;
+        }
+        .register-box {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .register-header {
+            background: linear-gradient(135deg, #002c5f 0%, #004a8f 100%);
+            padding: 48px 40px 40px;
+            text-align: center;
+        }
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 24px;
+            filter: brightness(0) invert(1);
+        }
+        .register-header h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .register-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .register-body {
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #1a1a1a;
+            transition: all 0.2s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #002c5f;
+            box-shadow: 0 0 0 3px rgba(0, 44, 95, 0.1);
+        }
+        .form-group input::placeholder {
+            color: #9aa0a6;
+        }
+        .form-group input.error {
+            border-color: #d32f2f;
+        }
+        .error-message {
+            color: #d32f2f;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        .success-message {
+            color: #2e7d32;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+        .success-message.show {
+            display: block;
+        }
+        .register-button {
+            width: 100%;
+            padding: 16px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, #002c5f 0%, #004a8f 100%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: -0.3px;
+        }
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 44, 95, 0.3);
+        }
+        .register-button:active {
+            transform: translateY(0);
+        }
+        .register-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .register-footer {
+            padding: 24px 40px 40px;
+            text-align: center;
+            border-top: 1px solid #e8eaed;
+        }
+        .login-link {
+            color: #002c5f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .login-link:hover {
+            color: #004a8f;
+            text-decoration: underline;
+        }
+        .login-link::before {
+            content: "이미 계정이 있으신가요? ";
+            color: #5f6368;
+            font-weight: 400;
+        }
+        .terms-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e8eaed;
+        }
+        .terms-group {
+            margin-bottom: 16px;
+        }
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .terms-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .terms-checkbox label {
+            flex: 1;
+            font-size: 14px;
+            color: #1a1a1a;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .terms-checkbox label .required {
+            color: #d32f2f;
+            margin-left: 4px;
+        }
+        .terms-checkbox label .optional {
+            color: #5f6368;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        .terms-content {
+            max-height: 120px;
+            overflow-y: auto;
+            padding: 12px;
+            margin-top: 8px;
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+        .terms-link {
+            color: #002c5f;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .terms-link:hover {
+            color: #004a8f;
+        }
+        .all-agree {
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e8eaed;
+        }
+        .all-agree .terms-checkbox {
+            margin-bottom: 0;
+        }
+        .all-agree label {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .next-button {
+            width: 100%;
+            padding: 16px;
+            margin-top: 24px;
+            background: linear-gradient(135deg, #002c5f 0%, #004a8f 100%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: -0.3px;
+        }
+        .next-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 44, 95, 0.3);
+        }
+        .next-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .step-indicator {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+        .step-indicator .step-number {
+            color: #002c5f;
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            .register-header {
+                padding: 32px 24px 28px;
+            }
+            .register-body {
+                padding: 32px 24px;
+            }
+            .register-footer {
+                padding: 20px 24px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <div class="register-box">
+        <div class="register-header">
+            <img th:src="@{/img/logo.png}" src="/img/logo.png" alt="EV HUB" class="logo" onerror="this.style.display='none'">
+            <h1>회원가입</h1>
+            <p>전기차 충전소 예약 서비스</p>
+        </div>
+        <div class="register-body">
+            <!-- 1단계: 약관 동의 -->
+            <div class="step active" id="step1">
+                <div class="step-indicator">
+                    <span class="step-number">1</span> / 2 단계
+                </div>
+                <div class="terms-section" style="margin-top: 0; padding-top: 0; border-top: none;">
+                <div class="all-agree">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="agree-all" onchange="toggleAllAgreements()">
+                        <label for="agree-all">전체 동의</label>
+                    </div>
+                </div>
+                
+                <div class="terms-group">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="agree-terms" required onchange="checkRequiredTerms()">
+                        <label for="agree-terms">
+                            이용약관 동의 <span class="required">(필수)</span>
+                        </label>
+                    </div>
+                    <div class="terms-content" id="terms-content" style="display: none;">
+                        <strong>제1조 (목적)</strong><br>
+                        본 약관은 EV HUB(이하 "회사")가 제공하는 전기차 충전소 예약 서비스의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.<br><br>
+                        <strong>제2조 (정의)</strong><br>
+                        1. "서비스"란 회사가 제공하는 전기차 충전소 예약 및 관련 서비스를 의미합니다.<br>
+                        2. "이용자"란 본 약관에 따라 회사가 제공하는 서비스를 받는 회원 및 비회원을 말합니다.<br><br>
+                        <strong>제3조 (약관의 효력 및 변경)</strong><br>
+                        1. 본 약관은 서비스를 이용하고자 하는 모든 이용자에 대하여 그 효력을 발생합니다.<br>
+                        2. 회사는 필요한 경우 관련 법령을 위배하지 않는 범위에서 본 약관을 변경할 수 있습니다.
+                    </div>
+                    <div style="margin-top: 4px;">
+                        <span class="terms-link" onclick="toggleTerms('terms-content')">약관 전문 보기</span>
+                    </div>
+                </div>
+                
+                <div class="terms-group">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="agree-privacy" required onchange="checkRequiredTerms()">
+                        <label for="agree-privacy">
+                            개인정보 처리방침 동의 <span class="required">(필수)</span>
+                        </label>
+                    </div>
+                    <div class="terms-content" id="privacy-content" style="display: none;">
+                        <strong>1. 개인정보의 수집 및 이용 목적</strong><br>
+                        회사는 다음의 목적을 위하여 개인정보를 처리합니다:<br>
+                        - 서비스 제공 및 계약의 이행<br>
+                        - 회원 관리 및 본인 확인<br>
+                        - 충전소 예약 서비스 제공<br><br>
+                        <strong>2. 수집하는 개인정보의 항목</strong><br>
+                        - 필수항목: 아이디, 비밀번호, 닉네임<br>
+                        - 선택항목: 카카오 계정 정보(카카오 로그인 시)<br><br>
+                        <strong>3. 개인정보의 보유 및 이용 기간</strong><br>
+                        회원 탈퇴 시까지 보유하며, 탈퇴 후 즉시 파기합니다.
+                    </div>
+                    <div style="margin-top: 4px;">
+                        <span class="terms-link" onclick="toggleTerms('privacy-content')">약관 전문 보기</span>
+                    </div>
+                </div>
+                
+                <div class="terms-group">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="agree-marketing" onchange="updateAllAgree()">
+                        <label for="agree-marketing">
+                            마케팅 정보 수신 동의 <span class="optional">(선택)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                    <div class="error-message" id="terms-error"></div>
+                </div>
+                
+                <button class="next-button" onclick="goToStep2()" id="next-button" disabled>다음</button>
+            </div>
+            
+            <!-- 2단계: 회원가입 정보 입력 -->
+            <div class="step" id="step2">
+                <div class="step-indicator">
+                    <span class="step-number">2</span> / 2 단계
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" placeholder="아이디를 입력하세요" autocomplete="username" required>
+                    <div class="error-message" id="username-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" autocomplete="new-password" required>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm">비밀번호 확인</label>
+                    <input type="password" id="password-confirm" placeholder="비밀번호를 다시 입력하세요" autocomplete="new-password" required>
+                    <div class="error-message" id="password-confirm-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">닉네임</label>
+                    <input type="text" id="nickname" placeholder="닉네임을 입력하세요" autocomplete="nickname" required>
+                    <div class="error-message" id="nickname-error"></div>
+                </div>
+                
+                <button class="register-button" onclick="register()" id="register-button">회원가입</button>
+            </div>
+        </div>
+        <div class="register-footer">
+            <a href="/login" class="login-link">로그인</a>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleTerms(contentId) {
+        const content = document.getElementById(contentId);
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+    
+    function toggleAllAgreements() {
+        const agreeAll = document.getElementById('agree-all').checked;
+        document.getElementById('agree-terms').checked = agreeAll;
+        document.getElementById('agree-privacy').checked = agreeAll;
+        document.getElementById('agree-marketing').checked = agreeAll;
+        checkRequiredTerms();
+    }
+    
+    function updateAllAgree() {
+        const agreeTerms = document.getElementById('agree-terms').checked;
+        const agreePrivacy = document.getElementById('agree-privacy').checked;
+        const agreeMarketing = document.getElementById('agree-marketing').checked;
+        document.getElementById('agree-all').checked = agreeTerms && agreePrivacy && agreeMarketing;
+        checkRequiredTerms();
+    }
+    
+    function checkRequiredTerms() {
+        const agreeTerms = document.getElementById('agree-terms').checked;
+        const agreePrivacy = document.getElementById('agree-privacy').checked;
+        const nextButton = document.getElementById('next-button');
+        const termsError = document.getElementById('terms-error');
+        
+        // 필수 약관 동의 확인
+        if (agreeTerms && agreePrivacy) {
+            termsError.classList.remove('show');
+            termsError.textContent = '';
+            nextButton.disabled = false;
+        } else {
+            nextButton.disabled = true;
+        }
+    }
+    
+    function goToStep2() {
+        const agreeTerms = document.getElementById('agree-terms').checked;
+        const agreePrivacy = document.getElementById('agree-privacy').checked;
+        
+        if (!agreeTerms || !agreePrivacy) {
+            showError('terms-error', '필수 약관에 동의해주세요.');
+            return;
+        }
+        
+        // 1단계 숨기고 2단계 보이기
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step2').classList.add('active');
+    }
+    
+    function register() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const passwordConfirm = document.getElementById('password-confirm').value.trim();
+        const nickname = document.getElementById('nickname').value.trim();
+        const registerButton = document.getElementById('register-button');
+        
+        // 에러 메시지 초기화
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.classList.remove('show');
+            el.textContent = '';
+        });
+        document.querySelectorAll('input').forEach(el => {
+            el.classList.remove('error');
+        });
+        
+        let hasError = false;
+        
+        // 유효성 검사
+        if (!username) {
+            showError('username-error', '아이디를 입력해주세요.');
+            document.getElementById('username').classList.add('error');
+            hasError = true;
+        } else if (username.length < 3) {
+            showError('username-error', '아이디는 3자 이상이어야 합니다.');
+            document.getElementById('username').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!password) {
+            showError('password-error', '비밀번호를 입력해주세요.');
+            document.getElementById('password').classList.add('error');
+            hasError = true;
+        } else if (password.length < 4) {
+            showError('password-error', '비밀번호는 4자 이상이어야 합니다.');
+            document.getElementById('password').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!passwordConfirm) {
+            showError('password-confirm-error', '비밀번호 확인을 입력해주세요.');
+            document.getElementById('password-confirm').classList.add('error');
+            hasError = true;
+        } else if (password !== passwordConfirm) {
+            showError('password-confirm-error', '비밀번호가 일치하지 않습니다.');
+            document.getElementById('password-confirm').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!nickname) {
+            showError('nickname-error', '닉네임을 입력해주세요.');
+            document.getElementById('nickname').classList.add('error');
+            hasError = true;
+        }
+        
+        if (hasError) {
+            return;
+        }
+        
+        registerButton.disabled = true;
+        registerButton.textContent = '회원가입 중...';
+        
+        fetch('/users/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                nickname: nickname
+            })
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.text();
+            } else {
+                return res.text().then(text => {
+                    throw new Error(text || '회원가입 실패');
+                });
+            }
+        })
+        .then(message => {
+            alert(message || '회원가입이 완료되었습니다!');
+            // 로그인 페이지로 이동
+            window.location.href = '/login?registered=true';
+        })
+        .catch(err => {
+            // 에러 메시지 표시
+            if (err.message.includes('이미 존재하는 아이디')) {
+                showError('username-error', err.message);
+                document.getElementById('username').classList.add('error');
+            } else {
+                alert('회원가입 실패: ' + err.message);
+            }
+            registerButton.disabled = false;
+            registerButton.textContent = '회원가입';
+        });
+    }
+    
+    function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+    }
+    
+    // Enter 키로 회원가입 및 입력값 변경 시 약관 체크
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputs = ['username', 'password', 'password-confirm', 'nickname'];
+        inputs.forEach(inputId => {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        register();
+                    }
+                });
+            }
+        });
+        
+        // 약관 체크박스 변경 시 버튼 상태 업데이트
+        document.getElementById('agree-terms').addEventListener('change', checkRequiredTerms);
+        document.getElementById('agree-privacy').addEventListener('change', checkRequiredTerms);
+        
+        // 초기 상태: 1단계만 보이기
+        checkRequiredTerms();
+    });
+</script>
+</body>
+</html>
+
