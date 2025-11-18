@@ -4,6 +4,10 @@
   <img src="docs/logo.png" width="200" alt="EV HUB Logo"/>
 </p>
 
+<p align="center">
+  <img src="docs/main.png" width="200" alt="EV HUB Logo"/>
+</p>
+
 전기차 사용자는 빠르게 증가하고 있지만 대부분의 충전소는 **선착순**으로 운영되고 있습니다.  
 기존 앱은 위치 정보만 제공하며, **예약·결제·쿠폰·즐겨찾기 기능이 통합된 서비스는 없습니다.**  
 **EV HUB는 이러한 실질적인 문제를 해결하는 전기차 충전소 예약 플랫폼입니다.**
