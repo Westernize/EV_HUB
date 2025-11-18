@@ -1,5 +1,4 @@
 # 🚗 EV HUB – 전기차 충전소 예약 시스템
-*CUTE & SIMPLE EV Charging Reservation Platform*
 
 <p align="center">
   <img src="docs/logo.png" width="200" alt="EV HUB Logo"/>
