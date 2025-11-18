@@ -1,6 +1,10 @@
 # 🚗 EV HUB – 전기차 충전소 예약 시스템
 *CUTE & SIMPLE EV Charging Reservation Platform*
 
+<p align="center">
+  <img src="./logo.png" width="200" alt="EV HUB Logo"/>
+</p>
+
 전기차 사용자는 빠르게 증가하고 있지만 대부분의 충전소는 **선착순**으로 운영되고 있습니다.  
 기존 앱은 위치 정보만 제공하며, **예약·결제·쿠폰·즐겨찾기 기능이 통합된 서비스는 없습니다.**  
 **EV HUB는 이러한 실질적인 문제를 해결하는 전기차 충전소 예약 플랫폼입니다.**
@@ -53,6 +57,11 @@
 ---
 
 ## 🧩 ERD 요약
+
+<p align="center">
+  <img src="./ERD.png" width="600" alt="ERD Diagram"/>
+</p>
+
 - User 중심 구조  
 - User ↔ Reservation (1:N)  
 - User ↔ Coupon (1:N)  
@@ -63,21 +72,21 @@
 
 ## ⚙️ 기술 스택
 
-**Backend**
+**Backend**  
 - Java 21  
 - Spring Boot 3.5.7  
 - JPA  
 - Gradle / Lombok  
 
-**Frontend**
+**Frontend**  
 - Thymeleaf  
 - JavaScript  
 - Kakao Map API  
 
-**Database**
+**Database**  
 - MySQL 8.3.0  
 
-**Payment**
+**Payment**  
 - Iamport(카카오페이·토스)
 
 ---
@@ -94,11 +103,11 @@
 ---
 
 ## 🚀 보완 예정
-- 예약 가능 시간 시각화
-- AI 기반 충전소 추천
-- 알림(충전완료/예약 예정) 기능
-- 경로 최적화 네비게이션
-- 리뷰/평점 시스템
+- 예약 가능 시간 시각화  
+- AI 기반 충전소 추천  
+- 알림(충전완료/예약 예정) 기능  
+- 경로 최적화 네비게이션  
+- 리뷰/평점 시스템  
 
 ---
 
