@@ -1,11 +1,11 @@
 # 🚗 EV HUB – 전기차 충전소 예약 시스템
 
 <p align="center">
-  <img src="docs/logo.png" width="200" alt="EV HUB Logo"/>
+  <img src="docs/logo.png" width="1000" alt="EV HUB Logo"/>
 </p>
 
 <p align="center">
-  <img src="docs/main.png" width="200" alt="EV HUB Logo"/>
+  <img src="docs/main.png" width="1000" alt="EV HUB Logo"/>
 </p>
 
 전기차 사용자는 빠르게 증가하고 있지만 대부분의 충전소는 **선착순**으로 운영되고 있습니다.  
