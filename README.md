@@ -16,10 +16,8 @@
 
 ## 🔥 주요 기능
 ### 로딩 화면
-<video width="600" controls>
-  <source src="docs/loading.mp4" type="video/mp4">
-  브라우저가 video 태그를 지원하지 않습니다.
-</video>
+![Loading](docs/loading.gif)
+
 
 
 ### 🔐 사용자 인증
