@@ -19,8 +19,9 @@
 
   <!-- 왼쪽 GIF -->
   <div style="text-align: center;">
+     <h3>마커 화면</h3>
     <img src="docs/loading.gif" width="400" alt="Loading">
-    <div>로딩 화면</div>
+   
   </div>
 
   <!-- 오른쪽 GIF -->
