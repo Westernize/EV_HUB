@@ -15,8 +15,7 @@
 ---
 
 ## 🔥 주요 기능
-### 로딩 화면
-ffmpeg -i docs/loading.mp4 -vf "fps=10,scale=400:-1:flags=lanczos" -colors 64 docs/loading.gif
+### 로딩 화면<img src="docs/loading.gif" width="400" alt="Loading">
 
 
 
