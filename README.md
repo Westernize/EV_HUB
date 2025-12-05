@@ -21,11 +21,11 @@
   <tr>
     <td style="text-align: center;">
       <h3>로딩 화면</h3>
-      <img src="docs/loading.gif" width="600" alt="Loading">
+      <img src="docs/loading.gif" width="500" alt="Loading">
     </td>
     <td style="text-align: center;">
       <h3>마커 화면</h3>
-      <img src="docs/marker3.gif" width="600" alt="Marker">
+      <img src="docs/marker3.gif" width="500" alt="Marker">
     </td>
   </tr>
 </table>
