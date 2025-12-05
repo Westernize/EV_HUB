@@ -15,7 +15,8 @@
 ---
 
 ## 🔥 주요 기능
-### 로딩 화면<img src="docs/loading.gif" width="400" alt="Loading">
+### 로딩 화면
+<img src="docs/loading.gif" width="400" alt="Loading">
 
 
 
