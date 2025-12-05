@@ -1,3 +1,4 @@
+
 # 🚗 EV HUB – 전기차 충전소 예약 시스템
 
 <p align="center">
@@ -21,11 +22,11 @@
   <tr>
     <td style="text-align: center;">
       <h3>로딩 화면</h3>
-      <img src="docs/loading.gif" width="500" alt="Loading">
+      <img src="docs/loading.gif" width="450" alt="Loading">
     </td>
     <td style="text-align: center;">
       <h3>마커 화면</h3>
-      <img src="docs/marker3.gif" width="500" alt="Marker">
+      <img src="docs/marker3.gif" width="450" alt="Marker">
     </td>
   </tr>
 </table>
