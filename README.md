@@ -17,8 +17,8 @@
 ## 🔥 주요 기능
 ### 로딩 화면
 <video width="600" controls>
-  <source src="https://raw.githubusercontent.com/사용자명/저장소명/main/videos/your-video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  <source src="docs/loading.mp4" type="video/mp4">
+  브라우저가 video 태그를 지원하지 않습니다.
 </video>
 
 
