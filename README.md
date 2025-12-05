@@ -16,7 +16,20 @@
 
 ## 🔥 주요 기능
 ### 로딩 화면
-<img src="docs/loading.gif" width="400" alt="Loading"> <img src="docs/marker3.gif" width="400" alt="Marker">
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+
+  <div style="text-align: center;">
+    <img src="docs/loading.gif" width="400" alt="Loading">
+    <div>로딩 화면</div>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="docs/marker3.gif" width="400" alt="Marker">
+    <div>마커 화면</div>
+  </div>
+
+</div>
+
 
 
 
