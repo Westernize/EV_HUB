@@ -45,6 +45,19 @@
   </tr>
 </table>
 
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <h3>예약 화면</h3>
+      <img src="docs/list.gif" width="380" alt="Loading">
+    </td>
+    <td style="text-align: center;">
+      <h3>카카오결제 화면</h3>
+      <img src="docs/kakao.gif" width="380" alt="Marker">
+    </td>
+  </tr>
+</table>
+
 
 
 
