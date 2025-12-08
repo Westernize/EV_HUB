@@ -65,8 +65,8 @@
       <img src="docs/paylist.gif" width="380" alt="Loading">
     </td>
     <td style="text-align: center;">
-      <h3>카카오결제 화면</h3>
-      <img src="docs/kakao.gif" width="380" alt="Marker">
+      <h3>즐겨찾기 화면</h3>
+      <img src="docs/star.gif" width="380" alt="Marker">
     </td>
   </tr>
 </table>
