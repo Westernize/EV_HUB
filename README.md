@@ -79,8 +79,8 @@
       <img src="docs/mypage.gif" width="380" alt="Loading">
     </td>
     <td style="text-align: center;">
-      <h3>즐겨찾기 화면</h3>
-      <img src="docs/star.gif" width="380" alt="Marker">
+      <h3>챗봇 화면</h3>
+      <img src="docs/chatbot.gif" width="380" alt="Marker">
     </td>
   </tr>
 </table>
