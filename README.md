@@ -30,6 +30,18 @@
     </td>
   </tr>
 </table>
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <h3>로딩 화면</h3>
+      <img src="docs/loading.gif" width="380" alt="Loading">
+    </td>
+    <td style="text-align: center;">
+      <h3>마커 화면</h3>
+      <img src="docs/marker.gif" width="380" alt="Marker">
+    </td>
+  </tr>
+</table>
 
 
 
