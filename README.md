@@ -90,7 +90,7 @@
   <tr>
     <td style="text-align: center;">
       <h3>관리자 페이지</h3>
-      <img src="docs/admin.gif" width="600" alt="Loading">
+      <img src="docs/admin.gif" width="760" alt="Loading">
     </td>
 </table>
 
