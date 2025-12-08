@@ -33,13 +33,14 @@
 
 <table>
   <tr>
+
     <!-- 왼쪽: 상세 정보 화면 -->
     <td style="text-align: center; vertical-align: top;">
       <h3>상세 정보 화면</h3>
       <img src="docs/sidebar.gif" width="380">
     </td>
 
-    <!-- 오른쪽: 회원가입 + 로그인 테이블 -->
+    <!-- 오른쪽: 회원가입 + 로그인 화면 -->
     <td style="vertical-align: top;">
       <table>
         <tr>
@@ -57,6 +58,7 @@
         </tr>
       </table>
     </td>
+
   </tr>
 </table>
 
