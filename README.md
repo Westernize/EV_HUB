@@ -26,7 +26,7 @@
     </td>
     <td style="text-align: center;">
       <h3>마커 화면</h3>
-      <img src="docs/marker3.gif" width="380" alt="Marker">
+      <img src="docs/marker.gif" width="380" alt="Marker">
     </td>
   </tr>
 </table>
