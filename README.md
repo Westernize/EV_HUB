@@ -38,7 +38,6 @@
       <img src="docs/sidebar.gif" width="380">
     </td>
 
-    <!-- 여기 한 칸 안에 회원가입 + 로그인 두 개 넣기 -->
     <td style="text-align: center;">
       <h3>회원가입 화면</h3>
       <img src="docs/sign.gif" width="380">
