@@ -72,6 +72,19 @@
 </table>
 
 
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <h3>회원정보 수정</h3>
+      <img src="docs/mypage.gif" width="380" alt="Loading">
+    </td>
+    <td style="text-align: center;">
+      <h3>즐겨찾기 화면</h3>
+      <img src="docs/star.gif" width="380" alt="Marker">
+    </td>
+  </tr>
+</table>
+
 
 
 
