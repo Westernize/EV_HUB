@@ -33,8 +33,8 @@
 <table>
   <tr>
     <td style="text-align: center;">
-      <h3>로딩 화면</h3>
-      <img src="docs/loading.gif" width="380" alt="Loading">
+      <h3>상세 정보 화면</h3>
+      <img src="docs/sidebar.gif" width="380" alt="Loading">
     </td>
     <td style="text-align: center;">
       <h3>마커 화면</h3>
