@@ -38,17 +38,22 @@
       <img src="docs/sidebar.gif" width="380">
     </td>
 
-    <td style="text-align: center; vertical-align: top;">
+   <table>
+  <tr>
+    <td style="text-align: center;">
       <h3>회원가입 화면</h3>
       <img src="docs/sign.gif" width="380">
+    </td>
+  </tr>
 
-      <br><br>
-
+  <tr>
+    <td style="text-align: center;">
       <h3>로그인 화면</h3>
       <img src="docs/login.gif" width="380">
     </td>
   </tr>
 </table>
+
 
 
 
