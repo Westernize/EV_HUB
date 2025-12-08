@@ -37,8 +37,8 @@
       <img src="docs/sidebar.gif" width="380" alt="Loading">
     </td>
     <td style="text-align: center;">
-      <h3>마커 화면</h3>
-      <img src="docs/marker.gif" width="380" alt="Marker">
+      <h3>회원가입 화면</h3>
+      <img src="docs/sign.gif" width="380" alt="Marker">
     </td>
   </tr>
 </table>
