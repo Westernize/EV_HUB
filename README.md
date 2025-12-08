@@ -31,34 +31,17 @@
   </tr>
 </table>
 
+
 <table>
   <tr>
-
-    <!-- 왼쪽: 상세 정보 화면 -->
-    <td style="text-align: center; vertical-align: top;">
-      <h3>상세 정보 화면</h3>
-      <img src="docs/sidebar.gif" width="380">
+    <td style="text-align: center;">
+      <h3>회원가입 화면</h3>
+      <img src="docs/sign.gif" width="380" alt="Loading">
     </td>
-
-    <!-- 오른쪽: 회원가입 + 로그인 화면 -->
-    <td style="vertical-align: top;">
-      <table>
-        <tr>
-          <td style="text-align: center;">
-            <h3>회원가입 화면</h3>
-            <img src="docs/sign.gif" width="380">
-          </td>
-        </tr>
-
-        <tr>
-          <td style="text-align: center;">
-            <h3>로그인 화면</h3>
-            <img src="docs/login.gif" width="380">
-          </td>
-        </tr>
-      </table>
+    <td style="text-align: center;">
+      <h3>로그인 화면</h3>
+      <img src="docs/login.gif" width="380" alt="Marker">
     </td>
-
   </tr>
 </table>
 
