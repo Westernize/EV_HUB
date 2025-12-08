@@ -61,7 +61,7 @@
 <table>
   <tr>
     <td style="text-align: center;">
-      <h3>예약내역 화면</h3>
+      <h3>예약내역 화면(취소,미결제)</h3>
       <img src="docs/paylist.gif" width="380" alt="Loading">
     </td>
     <td style="text-align: center;">
